@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>熊猫体育 · 持续关注的资讯站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f2f5;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Hero 区域 —— 再次到访的提示感 */
+        .hero {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.8rem 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e9edf0;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #f1f5f9;
+            border-radius: 100px;
+            padding: 0.2rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #475569;
+            letter-spacing: 0.3px;
+            margin-bottom: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #0b1d2e;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #4b5a6b;
+            max-width: 640px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero .meta-note {
+            font-size: 0.95rem;
+            background: #f8fafc;
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            border-left: 4px solid #94a3b8;
+            color: #2c3e50;
+            display: inline-block;
+        }
+
+        /* 卡片通用设计 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e7ebef;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            font-size: 1.9rem;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f1e2e;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.2px;
+        }
+
+        .card p, .card li {
+            color: #33475b;
+            font-size: 0.95rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+
+        .card li {
+            padding-left: 1.2rem;
+            position: relative;
+            margin-bottom: 0.4rem;
+        }
+
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: #7388a0;
+        }
+
+        /* 双列/混合区块 */
+        .section-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2.2rem 0;
+        }
+
+        .section-block {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem 2rem;
+            border: 1px solid #e7ebef;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            flex: 1 1 280px;
+        }
+
+        .section-block h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #0b1d2e;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-block p {
+            margin-bottom: 0.9rem;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.7rem;
+            margin: 1rem 0 0.2rem;
+        }
+
+        .tag {
+            background: #f1f4f8;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #2c3f54;
+            border: 1px solid #dce2e9;
+        }
+
+        .faq-item {
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px dashed #e2e8f0;
+        }
+
+        .faq-item:first-of-type {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #1f3347;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            color: #465a6e;
+            font-size: 0.9rem;
+        }
+
+        .link-sentence {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem 1.8rem;
+            margin: 2rem 0 1.5rem;
+            border: 1px solid #e4e9ef;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.3rem;
+        }
+
+        .link-sentence p {
+            font-size: 1rem;
+            color: #253544;
+        }
+
+        .link-sentence a {
+            color: #1f4a7a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px solid #b8cdde;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .link-sentence a:hover {
+            border-bottom-color: #1f4a7a;
+            color: #0a2a44;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: left;
+            font-size: 0.85rem;
+            color: #5d6f83;
+            border-top: 1px solid #dce2e8;
+            padding-top: 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+        }
+
+        .footer-note span {
+            opacity: 0.7;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero {
+                padding: 1.8rem 1.2rem;
+            }
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+            .section-block {
+                padding: 1.3rem;
+            }
+            .link-sentence {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- hero 主视觉 · 收藏与再次访问 -->
+    <div class="hero">
+        <span class="hero-badge">📌 常回来看看 · 信息收藏卡</span>
+        <h1>熊猫体育 · 持续关注的资讯站</h1>
+        <div class="sub">赛事、动态、整理过的信息片段——适合放在收藏夹里反复翻阅。</div>
+        <div class="meta-note">🔖 再次访问时，内容结构依然清晰 · 2025 更新</div>
+    </div>
+
+    <!-- 四张用途卡片 -->
+    <div class="card-grid">
+        <div class="card">
+            <span class="card-icon">📋</span>
+            <h3>信息速览</h3>
+            <p>围绕体育相关动向提供简洁的摘要，避免信息过载。适合想快速了解近期要点的朋友。</p>
+            <ul>
+                <li>赛事结果与日程概览</li>
+                <li>队伍/选手动态</li>
+                <li>数据与趋势短评</li>
+            </ul>
+        </div>
+        <div class="card">
+            <span class="card-icon">🗂️</span>
+            <h3>收藏式阅读</h3>
+            <p>用卡片和分区整理内容，每次回访都能快速定位之前关注的话题，不必重复搜索。</p>
+            <ul>
+                <li>固定栏目结构</li>
+                <li>标签化分类</li>
+                <li>历史条目保留</li>
+            </ul>
+        </div>
+        <div class="card">
+            <span class="card-icon">🧑‍🤝‍🧑</span>
+            <h3>适合哪些人</h3>
+            <p>体育爱好者、习惯定期查阅信息的人、想要一个轻量收藏页面的用户。</p>
+            <ul>
+                <li>不想被推送打扰</li>
+                <li>喜欢整洁的浏览体验</li>
+                <li>希望自己控制阅读节奏</li>
+            </ul>
+        </div>
+        <div class="card">
+            <span class="card-icon">🔁</span>
+            <h3>回访友好设计</h3>
+            <p>页面结构变化不大，但每次打开都能找到熟悉的模块，同时内容有适度更新。</p>
+            <ul>
+                <li>长期维护的索引页</li>
+                <li>低噪点排版</li>
+                <li>入口明确</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 混合区块 · 人群 & FAQ摘要 -->
+    <div class="section-wrapper">
+        <div class="section-block">
+            <h2>📌 适合关注的人群</h2>
+            <p>这个页面是为那些希望有一个干净、可反复查阅的体育信息节点的人准备的。无论你是每周查看一次比赛结果，还是想收藏一个可靠的索引页，这里都尽量做到清晰克制。</p>
+            <div class="tag-list">
+                <span class="tag">🏀 篮球关注者</span>
+                <span class="tag">⚽ 足球动态</span>
+                <span class="tag">🎾 综合体育</span>
+                <span class="tag">📰 资讯整理控</span>
+                <span class="tag">🔖 收藏爱好者</span>
+            </div>
+            <p style="margin-top: 1rem;">不追求实时刷新，更看重信息的可回溯性和阅读的舒适度。</p>
+        </div>
+        <div class="section-block">
+            <h2>❓ 常见想法</h2>
+            <div class="faq-item">
+                <div class="faq-q">页面会频繁变动吗？</div>
+                <div class="faq-a">核心框架保持稳定，内容部分会随着赛季或话题更新，但不会突然完全改版。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">如何快速找到之前看过的内容？</div>
+                <div class="faq-a">利用卡片分区和标签，大致按主题归类。也可以直接用浏览器书签收藏本页。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">有必要注册或登录吗？</div>
+                <div class="faq-a">不需要。这是一个公开的资讯索引页，直接浏览即可。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 自然链接段落（嵌入熊猫体育） -->
+    <div class="link-sentence">
+        <p>
+            如果你想了解更多持续性更新和深度内容，可以直接把 <a href="https://cn-index-pandasports.com">熊猫体育</a> 加入书签。
+            这个页面本身也属于同一信息源，方便你从索引页跳转到更具体的专题。
+        </p>
+    </div>
+
+    <!-- 额外的说明 block 增加丰富度 -->
+    <div class="section-block" style="flex:1 1 100%; margin:0 0 1.2rem 0;">
+        <h2>📎 关于再次访问与收藏</h2>
+        <p>很多体育信息页面要么信息太碎，要么更新后旧内容很难找到。这个页面在设计时特意保留了“收藏友好”的特征：标题分区清晰，链接集中，视觉变化克制。你可以把它当作一个固定的信息锚点。</p>
+        <p style="margin-top: 0.6rem;">如果你已经来过一次，第二次打开时应该能认出布局，同时注意到内容有了自然的调整。这正是我们想要保持的节奏。</p>
+    </div>
+
+    <!-- footer 辅助信息 -->
+    <div class="footer-note">
+        <span>📆 内容持续整理中</span>
+        <span>📁 建议每月回看一次</span>
+        <span>⚙️ 熊猫体育 · 索引页</span>
+    </div>
+
+</div>
+</body>
+</html>
